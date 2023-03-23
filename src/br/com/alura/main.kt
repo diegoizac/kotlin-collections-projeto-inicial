@@ -3,10 +3,47 @@ package br.com.alura
 fun main() {
     val pedidos: MutableMap<Int, Double> = mutableMapOf(
         Pair(1, 20.0), //utilizar o pair caso precise de maior performance
-        Pair(2, 34.0),
-        3 to 50.0 //utilizar o to caso queira maior comodidade
+        Pair(2, 64.0),
+        3 to 50.0, //utilizar o to caso queira maior comodidade
+        4 to 100.0,
+        5 to 150.0,
+        6 to 80.0
     )
-    testaMap(pedidos)
+//      val valorPedido = pedidos.getValue(5) // pega o valor da chave 5 assim como pedido[5]
+//      println(valorPedido)
+//  println(it) //it imprime o valor de message
+    val mensagem = pedidos.getOrElse(5,
+        //0.0 //caso queira pode colocar tipo "mensage: Double?" que é do tipo nullble para responder a expressao lambda com 0.0 por exemplo
+        {"Não tem o pedido"})
+    println(mensagem)//caso queira pode adicionar uma variavel para receber o valor
+    println(pedidos.getOrDefault(1, -1)) //retorna o valor da key 1 caso exista, caso não exista retorna o valor default -1.0 que não corresponde a um valor de pedido
+    println(pedidos.getOrDefault(0, -1)) //retorna -1.0 que não corresponde a um valor valido, pois a key 0 não existe, porem poderiamos retornar 0.0 por exemplo
+
+    println(pedidos.keys) //retorna as chaves do map
+    println(pedidos.values) //retorna os valores do map
+
+    for (numero in pedidos.keys) {
+        println("Pedido $numero")
+    }
+    for (valor in pedidos.values) {
+        println("Valor do pedido: $valor")
+    }
+
+    val pedidosFiltrados = pedidos.filter { (numero, valor) -> //utilizando o destructuring
+//        false // retorna false para todos os elementos do map
+//        true // retorna true para todos os elementos do map
+        numero % 2 == 0 && valor > 50.0 // modulo de 2 retorna 0 para numeros pares, e retorna 1 para numeros impares --> no caso retorna os pares e maiores que 50.0
+    }
+    println(pedidosFiltrados) // retorna pedidos utilizando o filtro
+
+    val pedidosAcima = pedidos.filterValues { valor -> //utilizando o filterValues pegando os numero acima de 70.0
+        valor > 70.0
+    }
+    println(pedidosAcima)
+    val pedidosPares = pedidos.filterKeys { numero -> //utilizando o filterKeys pegando os numero pares
+        numero % 2 == 0
+    }
+    println(pedidosPares)
 }
 
 fun testaMap(pedidos: MutableMap<Int, Double>) {
