@@ -6,6 +6,10 @@ fun main() {
         Pair(2, 34.0),
         3 to 50.0 //utilizar o to caso queira maior comodidade
     )
+    testaMap(pedidos)
+}
+
+fun testaMap(pedidos: MutableMap<Int, Double>) {
     println(pedidos)
     val pedido = pedidos[3]
     pedido?.let {
