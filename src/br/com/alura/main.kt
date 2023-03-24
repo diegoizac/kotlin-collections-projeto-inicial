@@ -44,6 +44,29 @@ fun main() {
         numero % 2 == 0
     }
     println(pedidosPares)
+    println(pedidos +mapOf(7 to 90.0, 8 to 20.0))  //adiciona novos valores a um novo map
+    println(pedidos) //retorna o map original
+
+    println(pedidos + Pair(7, 90.0)) //adiciona novo valor ao map
+    println(pedidos) //retorna o map original
+
+    println(pedidos - listOf(6, 5)) //remove os valores do map
+    println(pedidos) //retorna o map original
+
+//    pedidos.putAll(listOf<Pair<Int,Double>>(7 to 90.0, 8 to 20.0, 8 to 30.0))
+    pedidos += (listOf<Pair<Int,Double>>(7 to 90.0, 8 to 20.0, 8 to 30.0))
+    println(pedidos) //adiciona novos valores ao map
+
+    pedidos.keys.remove(1) //remove a chave 1 do map
+    println(pedidos)
+
+    pedidos.values.remove(50.0) //remove o valor 50.0 do map
+    println(pedidos)
+
+    pedidos.values.remove(100.0) //remove o valor 100.0 do map
+    println(pedidos)
+
+    pedidos -= 6 //remove a chave 6 do map
 }
 
 fun testaMap(pedidos: MutableMap<Int, Double>) {
